@@ -21,7 +21,6 @@ import NavBar from '../components/NavBar'
 import Polling from '../components/Polling'
 import Popups from '../components/Popups'
 import { TokenDetailsPageSkeleton } from '../components/Tokens/TokenDetails/Skeleton'
-import { useIsExpertMode } from '../state/user/hooks'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
 import AddLiquidity from './AddLiquidity'
 import { RedirectDuplicateTokenIds } from './AddLiquidity/redirects'
@@ -122,7 +121,7 @@ export default function App() {
   const { pathname } = useLocation()
   const currentPage = getCurrentPageFromLocation(pathname)
   const isDarkMode = useIsDarkMode()
-  const isExpertMode = useIsExpertMode()
+  // const isExpertMode = useIsExpertMode()
   const [scrolledState, setScrolledState] = useState(false)
 
   useAnalyticsReporter()
@@ -157,9 +156,9 @@ export default function App() {
     user.set(CUSTOM_USER_PROPERTIES.DARK_MODE, isDarkMode)
   }, [isDarkMode])
 
-  useEffect(() => {
-    user.set(CUSTOM_USER_PROPERTIES.EXPERT_MODE, isExpertMode)
-  }, [isExpertMode])
+  // useEffect(() => {
+  //   user.set(CUSTOM_USER_PROPERTIES.EXPERT_MODE, isExpertMode)
+  // }, [isExpertMode])
 
   useEffect(() => {
     window.addEventListener('scroll', scrollListener)
