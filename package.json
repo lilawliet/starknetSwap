@@ -217,6 +217,7 @@
     "redux": "^4.1.2",
     "redux-localstorage-simple": "^2.3.1",
     "setimmediate": "^1.0.5",
+    "starknet": "^4.9.0",
     "styled-components": "^5.3.5",
     "tiny-invariant": "^1.2.0",
     "ua-parser-js": "^0.7.28",

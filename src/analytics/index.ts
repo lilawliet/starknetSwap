@@ -1,7 +1,7 @@
 import { Identify, identify, init, track } from '@amplitude/analytics-browser'
 import { isProductionEnv } from 'utils/env'
 
-const DUMMY_KEY = '8eef1c96cab9e365140b732b09a66ee2'
+const DUMMY_KEY = '00000000000000000000000000000000'
 const PROXY_URL = process.env.REACT_APP_AMPLITUDE_PROXY_URL
 
 /**
@@ -15,21 +15,21 @@ export function initializeAnalytics() {
     return
   }
   init(
-    DUMMY_KEY
-    // /* userId= */ undefined, // User ID should be undefined to let Amplitude default to Device ID
+    DUMMY_KEY,
+    /* userId= */ undefined, // User ID should be undefined to let Amplitude default to Device ID
     /* options= */
-    // {
-    //   // Configure the SDK to work with alternate endpoint
-    //   serverUrl: PROXY_URL,
-    //   // Disable tracking of private user information by Amplitude
-    //   trackingOptions: {
-    //     ipAddress: false,
-    //     carrier: false,
-    //     city: false,
-    //     region: false,
-    //     dma: false, // designated market area
-    //   },
-    // }
+    {
+      // Configure the SDK to work with alternate endpoint
+      serverUrl: PROXY_URL,
+      // Disable tracking of private user information by Amplitude
+      trackingOptions: {
+        ipAddress: false,
+        carrier: false,
+        city: false,
+        region: false,
+        dma: false, // designated market area
+      },
+    }
   )
 }
 

@@ -361,7 +361,6 @@ export default function AddLiquidity() {
 
   const handleCurrencyASelect = useCallback(
     (currencyANew: Currency) => {
-      console.log('handleCurrencyASelect')
       const [idA, idB] = handleCurrencySelect(currencyANew, currencyIdB)
       if (idB === undefined) {
         navigate(`/add/${idA}`)
@@ -374,7 +373,6 @@ export default function AddLiquidity() {
 
   const handleCurrencyBSelect = useCallback(
     (currencyBNew: Currency) => {
-      console.log('handleCurrencyBSelect')
       const [idB, idA] = handleCurrencySelect(currencyBNew, currencyIdA)
       if (idA === undefined) {
         navigate(`/add/${idB}`)
@@ -387,7 +385,6 @@ export default function AddLiquidity() {
 
   const handleFeePoolSelect = useCallback(
     (newFeeAmount: FeeAmount) => {
-      console.log('handleFeePoolSelect')
       onLeftRangeInput('')
       onRightRangeInput('')
       navigate(`/add/${currencyIdA}/${currencyIdB}/${newFeeAmount}`)
@@ -396,7 +393,6 @@ export default function AddLiquidity() {
   )
 
   const handleDismissConfirmation = useCallback(() => {
-    console.log('handleDismissConfirmation')
     setShowConfirm(false)
     // if there was a tx hash, we want to clear the input
     if (txHash) {
@@ -410,7 +406,6 @@ export default function AddLiquidity() {
   const addIsUnsupported = useIsSwapUnsupported(currencies?.CURRENCY_A, currencies?.CURRENCY_B)
 
   const clearAll = useCallback(() => {
-    console.log('clearAll')
     onFieldAInput('')
     onFieldBInput('')
     onLeftRangeInput('')

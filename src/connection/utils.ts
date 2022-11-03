@@ -5,6 +5,7 @@ import {
   gnosisSafeConnection,
   injectedConnection,
   networkConnection,
+  starknetConnection,
   walletConnectConnection,
 } from 'connection'
 
@@ -26,6 +27,7 @@ const CONNECTIONS = [
   coinbaseWalletConnection,
   walletConnectConnection,
   networkConnection,
+  starknetConnection,
 ]
 export function getConnection(c: Connector | ConnectionType) {
   if (c instanceof Connector) {
@@ -46,6 +48,8 @@ export function getConnection(c: Connector | ConnectionType) {
         return networkConnection
       case ConnectionType.GNOSIS_SAFE:
         return gnosisSafeConnection
+      case ConnectionType.STARKNET:
+        return starknetConnection
     }
   }
 }
@@ -62,5 +66,7 @@ export function getConnectionName(connectionType: ConnectionType, isMetaMask?: b
       return 'Network'
     case ConnectionType.GNOSIS_SAFE:
       return 'Gnosis Safe'
+    case ConnectionType.STARKNET:
+      return 'Starknet'
   }
 }

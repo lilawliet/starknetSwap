@@ -101,11 +101,12 @@ const Navbar = () => {
                 <MenuDropdown />
               </Box>
               {isNftPage && <ShoppingBag />}
-              {/* {!isNftPage && (
+              {!isNftPage && (
                 <Box display={{ sm: 'none', lg: 'flex' }}>
                   <ChainSelector />
                 </Box>
-              )} */}
+              )}
+
               <Web3Status />
             </Row>
           </Box>

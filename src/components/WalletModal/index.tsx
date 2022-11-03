@@ -7,7 +7,7 @@ import { sendEvent } from 'components/analytics'
 import { AutoColumn } from 'components/Column'
 import { AutoRow } from 'components/Row'
 import { networkConnection } from 'connection'
-import { getConnection, getConnectionName, getIsCoinbaseWallet, getIsInjected, getIsMetaMask } from 'connection/utils'
+import { getConnection, getConnectionName, getIsMetaMask } from 'connection/utils'
 import { NftVariant, useNftFlag } from 'featureFlags/flags/nft'
 import usePrevious from 'hooks/usePrevious'
 import { useCallback, useEffect, useState } from 'react'
@@ -17,7 +17,6 @@ import { useAppDispatch, useAppSelector } from 'state/hooks'
 import { updateSelectedWallet } from 'state/user/reducer'
 import { useConnectedWallets } from 'state/wallets/hooks'
 import styled from 'styled-components/macro'
-import { isMobile } from 'utils/userAgent'
 
 import { ReactComponent as Close } from '../../assets/images/x.svg'
 import { useModalIsOpen, useToggleWalletModal } from '../../state/application/hooks'
@@ -26,10 +25,8 @@ import { ExternalLink, ThemedText } from '../../theme'
 import AccountDetails from '../AccountDetails'
 import { LightCard } from '../Card'
 import Modal from '../Modal'
-import { CoinbaseWalletOption, OpenCoinbaseWalletOption } from './CoinbaseWalletOption'
-import { InjectedOption, InstallMetaMaskOption, MetaMaskOption } from './InjectedOption'
 import PendingView from './PendingView'
-import { WalletConnectOption } from './WalletConnectOption'
+import { StarknetOption } from './StarknetOption'
 
 const CloseIcon = styled.div`
   position: absolute;
@@ -241,44 +238,39 @@ export default function WalletModal({
   )
 
   function getOptions() {
-    const isInjected = getIsInjected()
-    const isMetaMask = getIsMetaMask()
-    const isCoinbaseWallet = getIsCoinbaseWallet()
+    // const isInjected = getIsInjected()
+    // const isMetaMask = getIsMetaMask()
+    // const isCoinbaseWallet = getIsCoinbaseWallet()
 
-    const isCoinbaseWalletBrowser = isMobile && isCoinbaseWallet
-    const isMetaMaskBrowser = isMobile && isMetaMask
-    const isInjectedMobileBrowser = isCoinbaseWalletBrowser || isMetaMaskBrowser
+    // const isCoinbaseWalletBrowser = isMobile && isCoinbaseWallet
+    // const isMetaMaskBrowser = isMobile && isMetaMask
+    // const isInjectedMobileBrowser = isCoinbaseWalletBrowser || isMetaMaskBrowser
 
-    let injectedOption
-    if (!isInjected) {
-      if (!isMobile) {
-        injectedOption = <InstallMetaMaskOption />
-      }
-    } else if (!isCoinbaseWallet) {
-      if (isMetaMask) {
-        injectedOption = <MetaMaskOption tryActivation={tryActivation} />
-      } else {
-        injectedOption = <InjectedOption tryActivation={tryActivation} />
-      }
-    }
+    const starknetOption = <StarknetOption tryActivation={tryActivation} />
+    // let injectedOption
+    // if (!isInjected) {
+    //   if (!isMobile) {
+    //     injectedOption = <InstallMetaMaskOption />
+    //   }
+    // } else if (!isCoinbaseWallet) {
+    //   if (isMetaMask) {
+    //     injectedOption = <MetaMaskOption tryActivation={tryActivation} />
+    //   } else {
+    //     injectedOption = <InjectedOption tryActivation={tryActivation} />
+    //   }
+    // }
 
-    let coinbaseWalletOption
-    if (isMobile && !isInjectedMobileBrowser) {
-      coinbaseWalletOption = <OpenCoinbaseWalletOption />
-    } else if (!isMobile || isCoinbaseWalletBrowser) {
-      coinbaseWalletOption = <CoinbaseWalletOption tryActivation={tryActivation} />
-    }
+    // let coinbaseWalletOption
+    // if (isMobile && !isInjectedMobileBrowser) {
+    //   coinbaseWalletOption = <OpenCoinbaseWalletOption />
+    // } else if (!isMobile || isCoinbaseWalletBrowser) {
+    //   coinbaseWalletOption = <CoinbaseWalletOption tryActivation={tryActivation} />
+    // }
 
-    const walletConnectionOption =
-      (!isInjectedMobileBrowser && <WalletConnectOption tryActivation={tryActivation} />) ?? null
+    // const walletConnectionOption =
+    //   (!isInjectedMobileBrowser && <WalletConnectOption tryActivation={tryActivation} />) ?? null
 
-    return (
-      <>
-        {injectedOption}
-        {coinbaseWalletOption}
-        {walletConnectionOption}
-      </>
-    )
+    return <>{starknetOption}</>
   }
 
   function getModalContent() {

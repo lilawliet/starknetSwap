@@ -3,6 +3,7 @@ import { initializeConnector, Web3ReactHooks } from '@web3-react/core'
 import { GnosisSafe } from '@web3-react/gnosis-safe'
 import { MetaMask } from '@web3-react/metamask'
 import { Network } from '@web3-react/network'
+import { Starknet } from '@web3-react/starknet'
 import { Connector } from '@web3-react/types'
 import { WalletConnect } from '@web3-react/walletconnect'
 import { SupportedChainId } from 'constants/chains'
@@ -17,6 +18,7 @@ export enum ConnectionType {
   WALLET_CONNECT = 'WALLET_CONNECT',
   NETWORK = 'NETWORK',
   GNOSIS_SAFE = 'GNOSIS_SAFE',
+  STARKNET = 'STARKNET',
 }
 
 export interface Connection {
@@ -36,6 +38,13 @@ export const networkConnection: Connection = {
   connector: web3Network,
   hooks: web3NetworkHooks,
   type: ConnectionType.NETWORK,
+}
+
+const [web3Starknet, web3StarknetHooks] = initializeConnector<Starknet>((actions) => new Starknet({ actions, onError }))
+export const starknetConnection: Connection = {
+  connector: web3Starknet,
+  hooks: web3StarknetHooks,
+  type: ConnectionType.STARKNET,
 }
 
 const [web3Injected, web3InjectedHooks] = initializeConnector<MetaMask>((actions) => new MetaMask({ actions, onError }))

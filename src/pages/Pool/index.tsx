@@ -198,8 +198,6 @@ export default function Pool() {
   const [userHideClosedPositions, setUserHideClosedPositions] = useUserHideClosedPositions()
 
   const { positions, loading: positionsLoading } = useV3Positions(account)
-  console.log('positions')
-  console.log(positions)
 
   if (!isSupportedChain(chainId)) {
     return <WrongNetworkCard />
